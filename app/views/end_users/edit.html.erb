@@ -1,2 +1,40 @@
-<h1>Public::EndUsers#edit</h1>
-<p>Find me in app/views/public/end_users/edit.html.erb</p>
+<h2>登録編集情報</h2>
+<%= form_with model:@end_user, local:true do |f| %>
+
+<div>
+  <label>名前</label>
+  (姓) <%= f.text_field :last_name, autofocus: true %>
+  (名) <%= f.text_field :first_name, autofocus: true %>
+</div>
+
+
+<div>
+  <label>フリガナ</label>
+  (セイ) <%= f.text_field :last_name_kana, autofocus: true %>
+  (メイ) <%= f.text_field :first_name_kana, autofocus: true %>
+</div>
+
+<div>
+  <label>メールアドレス</label>
+  <%= f.text_field :email, autofocus: true %>
+</div>
+
+<div>
+  <label>郵便番号（ハイフンなし）</label>
+  <%= f.text_field :postcode, autofocus: true %>
+</div>
+
+<div>
+  <label>住所</label>
+  <%= f.text_field :address, autofocus: true %>
+</div>
+
+<div>
+  <label>電話番号（ハイフンなし）</label>
+  <%= f.text_field :phone_number, autofocus: true %>
+</div>
+
+  <%= f.submit "編集内容を保存する" %>
+  <%= link_to '退会する', confirm_end_users_path, class:"btn btn-danger btn-sm" %>
+
+<% end %>

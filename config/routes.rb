@@ -7,18 +7,23 @@ Rails.application.routes.draw do
     passwords:     'end_users/passwords',
     registrations: 'end_users/registrations'
   }
-  
+
   devise_for :admin, controllers: {
     sessions: 'admin/sessions'
   }
 
 
-   resources :end_users, only: [:show,:edit,:confirm,:destroy,:update]
-  
-  
-  
+   resources :end_users, only: [:show,:edit,:destroy,:update] do
+     collection do
+      get :confirm
+    end
+   end
+
+
+
   namespace :admin do
     get '/', to: 'homes#top'
+    resources :end_users
   end
 
 

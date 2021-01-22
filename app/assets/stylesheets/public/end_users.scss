@@ -1,3 +1,47 @@
 // Place all the styles related to the public::end_users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+table{
+  border-collapse: collapse;
+  width: 500px;
+}
+
+tr .subject{
+  background-color: #eee;
+}
+
+.u-info{
+  display: flex;
+  margin-top: 20px;
+}
+
+.info{
+  display: flex;
+  margin: 20px auto;
+}
+
+td{
+  border: solid 1px black;
+}
+
+.info h6{
+  font-weight: 700;
+}
+
+.u-info h6{
+  font-weight: 700;
+}
+
+.main{
+  margin-left: 40px;
+}
+
+.confirm{
+  margin-top: 150px;
+  text-align: center;
+}
+
+.confirm p{
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
