@@ -19,11 +19,15 @@ Rails.application.routes.draw do
     end
    end
 
+   resources :items,only: [:index, :show]
+
 
 
   namespace :admin do
     get '/', to: 'homes#top'
     resources :end_users
+    resources :genres
+    resources :items
   end
 
 
