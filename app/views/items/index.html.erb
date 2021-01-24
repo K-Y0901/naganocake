@@ -1,0 +1,10 @@
+<div class="i-main">
+<h4>商品一覧(全x件）</h4>
+<% @items.each do |item| %>
+<div class="grid">
+  <%= attachment_image_tag item, :image %>
+  <p><%= item.item_name %></p>
+  <p><%= item.non_taxed_price %></p>
+</div>
+<% end %>
+</div>
