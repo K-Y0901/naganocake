@@ -1,2 +1,18 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="item-info">
+  <div>
+    <%= attachment_image_tag(@item, :image, size: '500x200', fallback: "no_image.jpg") %>
+  </div>
+  <div>
+    <h4><%= @item.item_name %></h4>
+    <p><%= @item.description %></p>
+    <h4>¥ <%= @item.non_taxed_price %> </h4>
+  </div>
+  <div>
+    <%= form_with model:@item, local:true do |f| %>
+      <%= f.select :@item, [1, 2, 3,4,5], {include_blank: '個数選択'} %>
+      <%= f.submit "カートに入れる" %>
+    <% end %>
+  </div>
+</div>
+
+

@@ -9,3 +9,11 @@ Admin.create!(
     email: "a@a",
     password: "aaaaaa"
 )
+
+Genre.create!(
+    name: "洋菓子"
+    )
+    
+Item.create!(
+    item_name: "いちごのショートケーキ"
+    )    
