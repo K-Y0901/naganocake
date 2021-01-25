@@ -18,10 +18,10 @@
         <li>ようこそ、<%= @end_user.first_name %>さん！</li>
         <li><%= link_to 'マイページ', end_user_path(current_end_user.id), class:"btn btn-light" %></li>
         <li><%= link_to '商品一覧' ,items_path, class:"btn btn-light" %></li>
-        <li><%= link_to 'カート', "#", class:"btn btn-light" %></li>
+        <li><%= link_to 'カート', cart_items_path, class:"btn btn-light" %></li>
         <li><%= link_to 'ログアウト', destroy_end_user_session_path, method: :delete, class:"btn btn-light" %></li>
 
-        <% elsif admin_url %>
+        <% elsif admin_signed_in? %>
         <li><%= link_to 'LOGO', admin_path, class:"btn btn-light" %></li>
         <li><%= link_to '商品一覧', admin_items_path, class:"btn btn-light" %></li>
         <li><%= link_to '会員一覧', admin_end_users_path, class:"btn btn-light" %></li>
