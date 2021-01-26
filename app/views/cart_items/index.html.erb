@@ -1,6 +1,6 @@
 <h4>ショッピングカート</h4>
 
-<%= link_to 'カートを空にする', "#", class:"btn btn-danger" %>
+<%= link_to 'カートを空にする', destroy_all_cart_items_path, method: :delete, class:"btn btn-danger btn-sm", data: {confirm: "カートを空にしますか？"} %>
 
 <table class="table">
   <thead>
@@ -13,17 +13,38 @@
     </tr>
   </thead>
   <tbody>
+    <% @sum = 0 %>
     <% @cart_items.each do |cart_item| %>
     <tr>
       <td>
-        <%= attachment_image_tag(cart_item, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
-        <%= cart_item.item_name %>
+        <%= attachment_image_tag(cart_item.item, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+        <%= cart_item.item.item_name %>
       </td>
-      <td><%= cart_item.non_taxed_price %></td>
-      <td><%= cart_item.amount %></td>
-      <td><%= cart_item.price %></td>
-      <td><%= link_to "削除する", "#", class:"btn btn-danger" %></td>
+      <td><%= cart_item.item.non_taxed_price.to_i %></td>
+      <td>
+        <%= form_with model:cart_item, url: cart_item_path(cart_item), local:true do |f| %>
+        <%= f.number_field :amount %>
+        <%= f.submit '変更' %>
+        <% end %>
+      </td>
+      <td><%= cart_item.item.non_taxed_price.to_i * cart_item.amount.to_i %></td>
+      <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, class:"btn btn-danger btn-sm" %></td>
+      <% @sum += cart_item.item.non_taxed_price.to_i * cart_item.amount.to_i %>
     </tr>
     <% end %>
   </tbody>
 </table>
+
+
+<div class="cart-info">
+  <div class="shopping">
+    <%= link_to "買い物を続ける", root_path, class:"btn btn-primary" %>
+  </div>
+  <div class="sum">
+    <h5>合計金額 <%= @sum %>円</h5>
+  </div>
+</div>
+
+
+
+<%= link_to "情報入力に進む", "#", class:"btn btn-success" %>

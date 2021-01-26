@@ -11,9 +11,12 @@ Admin.create!(
 )
 
 Genre.create!(
-    name: "洋菓子"
+    name: "test"
     )
-    
+
 Item.create!(
-    item_name: "いちごのショートケーキ"
-    )    
+    item_name: "test",
+    genre_id: 1,
+    description: "testtesttest",
+    non_taxed_price: 300
+    )

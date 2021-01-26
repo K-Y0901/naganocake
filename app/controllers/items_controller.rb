@@ -5,6 +5,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @end_user=current_end_user
     @item=Item.find(params[:id])
+    @cart_item=CartItem.new
   end
 end
