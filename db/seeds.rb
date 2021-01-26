@@ -9,3 +9,14 @@ Admin.create!(
     email: "a@admin",
     password: "adminadmin"
 )
+
+Genre.create!(
+    name: "test"
+    )
+
+Item.create!(
+    item_name: "test",
+    genre_id: 1,
+    description: "testtesttest",
+    non_taxed_price: 300
+    )
