@@ -8,5 +8,6 @@ class ItemsController < ApplicationController
     @end_user=current_end_user
     @item=Item.find(params[:id])
     @cart_item=CartItem.new
+    @end_user=current_end_user
   end
 end
