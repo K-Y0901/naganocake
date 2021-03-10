@@ -7,7 +7,9 @@ class EndUser < ApplicationRecord
 
   validates :last_name,:first_name,:last_name_kana,:first_name_kana,:postcode,:address,:phone_number,:is_active, presence: true
 
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :addresses, dependent: :destroy
 
 
   # validates :last_name,:first_name,:last_name_kana,:first_name_kana,:postcode,:address,:phone_number,:is_active, presence: true

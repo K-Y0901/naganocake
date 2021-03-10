@@ -25,6 +25,13 @@ Rails.application.routes.draw do
        delete :destroy_all
      end
    end
+   resources :orders, only: [:new, :create, :index, :show] do
+       collection do
+           post :confirm
+           post :complete
+       end
+   end
+   resources :addresses
 
 
 
@@ -34,6 +41,8 @@ Rails.application.routes.draw do
     resources :end_users
     resources :genres
     resources :items
+    resources :orders
+    resources :order_items
   end
 
 
