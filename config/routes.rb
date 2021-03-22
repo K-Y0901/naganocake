@@ -28,7 +28,7 @@ Rails.application.routes.draw do
    resources :orders, only: [:new, :create, :index, :show] do
        collection do
            post :confirm
-           post :complete
+           get :complete
        end
    end
    resources :addresses

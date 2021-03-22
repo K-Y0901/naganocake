@@ -5,16 +5,21 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order=Order.find(params[:id])
-    @order_items=OrderItem.all
+    @order_items=@order.order_items
   end
 
   def update
     @order = Order.find(params[:id])
+    @order_items=@order.order_items
     @order.update(order_params)
-    if params[:order][:order_status] == "1"
-       order_item.production_status = "1"
-       redirect_to admin_order_path(@order.id)
+    # binding.pry
+    if params[:order][:order_status] == "moneyconfirm"
+      # params[:order_item][:production_status] = "wait"
+      @order_items.update_all(production_status: "wait")
     end
+
+    redirect_to admin_order_path(@order.id)
+
 
   end
 
@@ -25,9 +30,13 @@ class Admin::OrdersController < ApplicationController
     params.require(:order).permit(:order_status)
   end
 
-  def order_item_params
-    params.require(:order_item).permit(:production_status)
-  end
+  # pp = params.require(:production).permit(:name, :director)
+  #     pp[:status] = params[:production][:status].to_i
+  #     return pp
+
+  # def order_item_params
+  #   params.require(:order_item).permit(:production_status)
+  # end
 
 
 end

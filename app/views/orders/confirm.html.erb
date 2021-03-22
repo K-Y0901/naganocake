@@ -1,7 +1,7 @@
 <h4>注文情報確認</h4>
 
 
-<%= form_with model: @order, url: complete_orders_path, method: :post, local:true do |f| %>
+<%= form_with model: @order, url: orders_path, method: :post, local:true do |f| %>
 
 <table>
   <thead>
@@ -36,7 +36,7 @@
 </div>
 
 <h4>支払い方法</h4>
-<%= @order.payment_option %>
+<%= @order.payment_option_i18n %>
 
 <h4>お届け先</h4>
 <div>

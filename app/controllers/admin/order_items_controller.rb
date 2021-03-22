@@ -1,22 +1,28 @@
 class Admin::OrderItemsController < ApplicationController
 
   def update
-    order_item = OrderItem.find(params[:id])
-    @order = order_item.order
-    order_item.update(order_item_params)
-    if params[:order_item][:production_status] == "2"
-       @order.order_status = "2"
-       redirect_to admin_orders_path(order_item)
+    # @order=Order.find(params[:id])
+    # @order_items=@order.order_items
+    @order_item = OrderItem.find(params[:id])
+    @order = @order_item.order
+    @order_item.update(order_item_params)
+    if params[:order_item][:production_status] == "start"
+       @order.update(order_status: "construction")
     end
 
+    @order_items = @order.order_items
     count = 0
-    @order.order_items.each do |a|
-      if params[:order_item][:production_status] == "3"
+    @order_items.each do |order_item|
+      if order_item.production_status == "production_completed"
         count = count + 1
       end
-      if @order.order_items.count=count
-        params[:order][:order_status] == "3"
-      end
+    end
+    # binding.pry
+    if @order_items.count == count
+       @order.update(order_status: "preparation")
+    end
+    redirect_to admin_order_path(@order)
+
 
   end
 
@@ -24,9 +30,9 @@ class Admin::OrderItemsController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:order_status)
-  end
+  # def order_params
+  #   params.require(:order).permit(:order_status)
+  # end
 
   def order_item_params
     params.require(:order_item).permit(:production_status)
