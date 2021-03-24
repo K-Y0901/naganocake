@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     @addresses = Address.all
     @end_user=current_end_user
 
-    @cart_items = CartItem.all
+    @cart_items = @end_user.cart_items
     if @cart_items.empty?
       render  "cart_items/index"
     end
@@ -18,10 +18,13 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+    # if @cart_items.blank?
+    #   redirect_to cart_items_path
+    # end
     @order=Order.new(order_params)
     session[:order] = @order
-    @cart_items=CartItem.all
     @end_user=current_end_user
+    @cart_items=@end_user.cart_items
 
     if @cart_items.empty?
       render  "cart_items/index"
@@ -49,6 +52,11 @@ class OrdersController < ApplicationController
   end
 
   def complete
+    @end_user= current_end_user
+    @cart_items=@end_user.cart_items
+    if @cart_items.empty?
+      render  "cart_items/index"
+    end
     @end_user=current_end_user
   end
 
