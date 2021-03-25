@@ -48,6 +48,7 @@ class OrdersController < ApplicationController
     elsif params[:order][:address_option] == "2"
       @order=Order.new(order_params)
     end
+    @order.billing_amount = 800+@sum.to_i
 
   end
 
@@ -73,7 +74,7 @@ class OrdersController < ApplicationController
       item_id: order_item.item_id,
       amount: order_item.amount,
       production_status: "undo",
-      price: @order.billing_amount
+      price: order_item.item.non_taxed_price
     })
     # @order_item=OrderItem.new
     # @cart_item.order_id=@order.id
@@ -96,7 +97,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:shipping_address, :shipping_code, :address, :payment_option)
+    params.require(:order).permit(:shipping_address, :shipping_code, :address, :payment_option, :billing_amount)
   end
 end
 

@@ -45,14 +45,14 @@
     <% @order_items.each do |order_item| %>
     <tr>
       <th><%= order_item.item.item_name %></th>
-      <th><%= order_item.item.non_taxed_price %></th>
+      <th><%= (order_item.price.to_i*1.1).round %></th>
       <th><%= order_item.amount %></th>
-      <th><%= order_item.item.non_taxed_price.to_i * order_item.amount.to_i %></th>
+      <th><%= (order_item.price.to_i*1.1).round * order_item.amount.to_i %></th>
       <%= form_with model: order_item, url: admin_order_item_path(order_item), method: :patch, local:true do |f| %>
       <th><%= f.select :production_status, OrderItem.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %></th>
       <th><%= f.submit '更新' %></th>
       <% end %>
-      <% @sum += order_item.item.non_taxed_price.to_i * order_item.amount.to_i %>
+      <% @sum += (order_item.price.to_i*1.1).round * order_item.amount.to_i %>
       <% end %>
     </tr>
 
