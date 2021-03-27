@@ -1,6 +1,9 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items=Item.all
+    # @items=Item.all
+    @items = Item.search(params[:search])
+    # @s_items = Item.where(activated: true).paginate(page: params[:page]).search(params[:search])
+    # @s_items = Item.paginate(page: params[:page], per_page: 5).search(params[:search])
   end
 
   def new
@@ -13,6 +16,10 @@ class Admin::ItemsController < ApplicationController
     @item.save
     redirect_to admin_item_path(@item)
   end
+
+  # def search
+  #   @s_items = Item.search(params[:search])
+  # end
 
 
   private

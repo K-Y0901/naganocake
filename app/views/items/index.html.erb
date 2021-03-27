@@ -10,3 +10,13 @@
 <% end %>
 </div>
 
+<ul>
+  <% @items.each do |item| %>
+  <li>
+    <%= item.item_name %>
+    <%= item.non_taxed_price %>
+    <%= item.genre.name %>
+    <%= item.sale_status %>
+  </li>
+  <% end %>
+</ul>
