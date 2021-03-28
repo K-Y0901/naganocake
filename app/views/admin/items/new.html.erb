@@ -12,7 +12,12 @@
   <h5>税抜き価格</h5>
   <%= f.text_field :non_taxed_price %>円
   <h5>販売ステータス</h5>
-  <label><%= f.radio_button :sale_status, "true" %>販売中</label>
-  <label><%= f.radio_button :sale_status, "false" %>売り切れ</label>
+  <label><%= f.radio_button :sale_status, :true %>販売中</label>
+  <label><%= f.radio_button :sale_status, false %>売り切れ</label>
+  <!--<%#= f.radio_button :sale_status, 0, checked: "checked" %>-->
+  <!--<%#= f.label :sale_status, :販売中, value: 0 %>-->
+  <!--<%#= f.radio_button :sale_status, 1 %>-->
+  <!--<%#= f.label :sale_status, :売り切れ, value: 1 %>-->
+
   <%= f.submit '新規登録' %>
 <% end %>

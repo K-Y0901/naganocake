@@ -18,7 +18,8 @@ class Item < ApplicationRecord
     end
   end
 
-  enum sale_status: {"売り切れ": false, "販売中": true }
+  # enum sale_status: {販売中: 0, 売り切れ: 1}
+
 
 
   attachment :image
