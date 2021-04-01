@@ -1,0 +1,70 @@
+<h4>注文履歴詳細</h4>
+
+<div class="order-info">
+  <div>購入者</div>
+  <di><%= @order.end_user.last_name %><%= @order.end_user.first_name %></di>
+</div>
+
+<div class="order-info">
+  <div>配送先</div>
+  <di>
+    <%= @order.shipping_code %>
+    <%= @order.shipping_address %>
+    <%= @order.address %>
+  </di>
+</div>
+
+<div class="order-info">
+  <div>支払い方法</div>
+  <div><%= @order.payment_option_i18n %></div>
+</div>
+
+<div class="order-info">
+  <div>注文ステータス</div>
+  <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local:true do |f| %>
+  <div><%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %></div>
+  <div><%= f.submit '更新' %></div>
+  <% end %>
+</div>
+
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込） </th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sum = 0 %>
+    <% @order_items.each do |order_item| %>
+    <tr>
+      <th><%= order_item.item.item_name %></th>
+      <th><%= (order_item.price.to_i*1.1).round %></th>
+      <th><%= order_item.amount %></th>
+      <th><%= (order_item.price.to_i*1.1).round * order_item.amount.to_i %></th>
+      <%= form_with model: order_item, url: admin_order_item_path(order_item), method: :patch, local:true do |f| %>
+      <th><%= f.select :production_status, OrderItem.production_statuses.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %></th>
+      <th><%= f.submit '更新' %></th>
+      <% end %>
+      <% @sum += (order_item.price.to_i*1.1).round * order_item.amount.to_i %>
+      <% end %>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+<div>
+  <p>商品合計 <%= @sum %> 円</p>
+  <p>送料 800円</p>
+  <p>請求金額合計 <%= @sum+800 %> 円</p>
+</div>
+
+

@@ -1,0 +1,22 @@
+<div class="i-main">
+<h4>商品一覧(全x件）</h4>
+<% @items.each do |item| %>
+<div class="grid">
+  <%= attachment_image_tag(item, :image, :fill, 100, 100, fallback: "no_image.jpg") %>
+  <p><%= item.item_name %></p>
+  <p>¥<%= (item.non_taxed_price * 1.1).round %></p>
+  <%= link_to '商品詳細', item_path(item), class:"btn btn-light" %>
+</div>
+<% end %>
+</div>
+
+<ul>
+  <% @items.each do |item| %>
+  <li>
+    <%= item.item_name %>
+    <%= item.non_taxed_price %>
+    <%= item.genre.name %>
+    <%= item.sale_status %>
+  </li>
+  <% end %>
+</ul>

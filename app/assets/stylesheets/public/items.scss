@@ -1,0 +1,22 @@
+// Place all the styles related to the public::items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.grid{
+  display: flex;
+  gap: 26px;
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.i-main{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+
+.item-info{
+  text-align: center;
+  display-inline: flex;
+}

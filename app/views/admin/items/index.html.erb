@@ -1,0 +1,25 @@
+<h4>商品一覧</h4>
+<%= link_to '商品新規登録', new_admin_item_path, class:"btn btn-light" %>
+<table>
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜き価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= item.item_name %></td>
+      <td><%= item.non_taxed_price %></td>
+      <td><%= item.genre.name %></td>
+      <td><%= item.sale_status  ? '販売中' : '売り切れ' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

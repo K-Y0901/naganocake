@@ -1,0 +1,41 @@
+<div class="main">
+<h5>マイページ</h5>
+<div class="info">
+  <h6>登録情報</h6>
+  <%= link_to '編集する', edit_end_user_path(current_end_user.id), class:"btn btn-primary btn-sm" %>
+  <%= link_to 'パスワードを変更する',"#", class:"btn btn-primary btn-sm"  %>
+</div>
+
+<table >
+  <tr>
+    <td class="subject">氏名</td> <td><%= @end_user.last_name %>  <%= @end_user.first_name %> </td>
+  </tr>
+  <tr>
+    <td class="subject">カナ</td> <td><%= @end_user.last_name_kana %>  <%= @end_user.first_name_kana %></td>
+  </tr>
+  <tr>
+    <td class="subject">郵便番号</td> <td><%= @end_user.postcode %></td>
+  </tr>
+  <tr>
+    <td class="subject">住所</td> <td><%= @end_user.address %></td>
+  </tr>
+  <tr>
+    <td class="subject">電話番号</td> <td><%= @end_user.phone_number %></td>
+  </tr>
+  <tr>
+    <td class="subject">メールアドレス</td> <td><%= @end_user.email %></td>
+  </tr>
+</table>
+
+
+<div class="u-info">
+  <h6>配送先</h6>
+  <%= link_to '一覧を見る',"#", class:"btn btn-primary btn-sm" %>
+</div>
+
+<div class="u-info">
+  <h6>注文履歴</h6>
+  <%= link_to '一覧を見る', "#", class:"btn btn-primary btn-sm" %>
+</div>
+
+</div>
